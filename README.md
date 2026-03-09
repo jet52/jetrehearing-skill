@@ -1,4 +1,4 @@
-# JetRehear Skill
+# Jetrehearing Skill
 
 Analyze petition for rehearing and produce recommendation memos for the Court. Skill evaluates whether the petition identifies points of law or fact the Court overlooked or misapprehended under N.D.R.App.P. 40, and recommends deny petition, request response, correction to opinion, or oral argument.
 
