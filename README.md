@@ -1,6 +1,6 @@
 # JetRehear Skill
 
-Analyze petitions for rehearing and produce recommendation memos for the North Dakota Supreme Court. Evaluates whether the petition identifies points of law or fact the Court overlooked or misapprehended under N.D.R.App.P. 40, and recommends deny, request response, correction, or oral argument.
+Analyze petition for rehearing and produce recommendation memos for the Court. Skill evaluates whether the petition identifies points of law or fact the Court overlooked or misapprehended under N.D.R.App.P. 40, and recommends deny petition, request response, correction to opinion, or oral argument.
 
 ## Caution: Privacy Settings Before Use (turn off use of training data)
 
@@ -43,6 +43,7 @@ cp -r skill/* ~/.claude/skills/jetrehearing/
 ## Usage
 
 Trigger phrases:
+
 - "Analyze rehearing petition"
 - "Rehearing memo"
 - "Review this petition for rehearing"
@@ -85,19 +86,19 @@ unzip ndac.zip -d ~/refs/ndac
 unzip rule.zip -d ~/refs/rule
 ```
 
-| Archive | Contents | Install to | Purpose |
-|---------|----------|------------|---------|
+| Archive                                               | Contents                                 | Install to     | Purpose                                    |
+| ----------------------------------------------------- | ---------------------------------------- | -------------- | ------------------------------------------ |
 | [opin.zip](https://ndconst.org/_media/tools/opin.zip) | ND Supreme Court opinions (1997-present) | `~/refs/opin/` | Precedent lookup and citation verification |
-| [ndcc.zip](https://ndconst.org/_media/tools/ndcc.zip) | North Dakota Century Code | `~/refs/ndcc/` | Statutory text verification |
-| [ndac.zip](https://ndconst.org/_media/tools/ndac.zip) | North Dakota Administrative Code | `~/refs/ndac/` | Administrative rule verification |
-| [rule.zip](https://ndconst.org/_media/tools/rule.zip) | North Dakota Court Rules | `~/refs/rule/` | Court rule verification |
+| [ndcc.zip](https://ndconst.org/_media/tools/ndcc.zip) | North Dakota Century Code                | `~/refs/ndcc/` | Statutory text verification                |
+| [ndac.zip](https://ndconst.org/_media/tools/ndac.zip) | North Dakota Administrative Code         | `~/refs/ndac/` | Administrative rule verification           |
+| [rule.zip](https://ndconst.org/_media/tools/rule.zip) | North Dakota Court Rules                 | `~/refs/rule/` | Court rule verification                    |
 
 ## Other Dependencies
 
-| Dependency | Purpose | Required? |
-|-----------|---------|-----------|
-| pypdf | Split PDF packets by bookmark | Recommended |
-| python-docx | Extract text from .docx opinions | Recommended |
-| [jetcite](https://github.com/jet52/jetcite) | Citation extraction and resolution | Required |
+| Dependency                                  | Purpose                            | Required?   |
+| ------------------------------------------- | ---------------------------------- | ----------- |
+| pypdf                                       | Split PDF packets by bookmark      | Recommended |
+| python-docx                                 | Extract text from .docx opinions   | Recommended |
+| [jetcite](https://github.com/jet52/jetcite) | Citation extraction and resolution | Required    |
 
 **jetcite** powers the citation checker (`verify_citations.py`). Install as a Claude skill from the GitHub repo, or via pip: `pip install git+https://github.com/jet52/jetcite.git`.
