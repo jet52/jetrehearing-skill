@@ -78,7 +78,7 @@ Example: N.D.R.Civ.P. 12(b) → `~/refs/rule/ndrcivp/rule-12.md`. N.D.R.App.P. 3
 
 ## Recommendation Logic
 
-Always recommend. Four possible outcomes:
+Always state a likely outcome, framed as a prediction based on precedent and the Court's rules — never as a personal recommendation. Use hedged, predictive language ("would likely," "appears to," "under the Court's practice"). Four possible outcomes:
 
 1. **Deny** — Court did not overlook or misapprehend; petitioner merely disagrees with the outcome.
 2. **Request response** — Close question on whether something was overlooked/misapprehended AND no response has been received yet.
@@ -472,7 +472,7 @@ Close call (could be oversight, uncertain):
 Write the complete recommendation memo in markdown per `rehearing-format.md`:
 
 1. **Header** — case number, case name, opinion date, petition date, response status
-2. **RECOMMENDATION** [¶1] — bold recommendation + 2-3 sentence reasoning
+2. **RECOMMENDATION** [¶1] — bold likely outcome + 2-3 sentence predictive reasoning
 3. **RULE 40 COMPLIANCE** [¶2] — timeliness, page limit, form, particularity
 4. **PETITION SUMMARY** [¶3] — overview of claims
 5. **ISSUE-BY-ISSUE ANALYSIS** — for each point:
@@ -483,7 +483,7 @@ Write the complete recommendation memo in markdown per `rehearing-format.md`:
    - Assessment
    - Response (if provided)
 6. **NEW AUTHORITIES** — table if any new citations detected
-7. **CONCLUSION** — restate recommendation with summary reasoning
+7. **CONCLUSION** — restate likely outcome with summary reasoning
 
 ### Step 6: Self-Review Checklist
 
@@ -496,7 +496,7 @@ Review the memo against this checklist before presenting:
 - [ ] New authorities flagged (if any)
 - [ ] Preservation checked (if briefs provided)
 - [ ] Response integrated (if provided)
-- [ ] Recommendation stated with reasoning in [¶1] and CONCLUSION
+- [ ] Likely outcome stated with predictive reasoning in [¶1] and CONCLUSION
 - [ ] Rule 40 compliance section complete
 - [ ] No placeholders, correct citation format
 - [ ] Only "the Court" for ND Supreme Court, "the district court" for lower court
@@ -560,7 +560,7 @@ Record citations (R##) reference the appellate record and are not checked by the
 
 - **Never fabricate citations.** Only cite cases and authorities that appear in the petition, opinion, or original briefs.
 - **Never use placeholder brackets** like [Date], [page], [County]. If information is unavailable, omit it or write "not specified in the record."
-- **Always recommend.** Every rehearing memo must include a recommendation (deny, request response, correction, or oral argument).
+- **Always state a likely outcome.** Every rehearing memo must include a predicted outcome (deny, request response, correction, or oral argument), framed as what the Court would likely do based on precedent and rules — never as a personal recommendation. Use hedged, predictive language; never first person; never emphatic or certain.
 - **Record citations are critical.** Bold-flag any record citation that does not support the petition's characterization.
 - **Use "the Court"** when referring to the ND Supreme Court; **"the district court"** for the lower court.
 - **Pinpoint opinion paragraph cites** are mandatory when discussing the opinion's treatment of a point. Always use [¶N] format.

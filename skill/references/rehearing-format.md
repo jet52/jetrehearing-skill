@@ -15,9 +15,10 @@
 ## RECOMMENDATION
 
 [¶1] **{Deny / Request response / Correction / Oral argument}.** {2-3 sentence
-reasoning summarizing why this recommendation applies. Reference the Rule 40
-standard — whether the petition identifies points of law or fact the Court
-overlooked or misapprehended, or merely reargues the case.}
+reasoning framed as a prediction of how the Court would likely resolve the
+petition based on precedent and neutral application of the rules. Do not
+state a personal recommendation — instead, describe what outcome the
+Court's prior practice and the applicable standards suggest.}
 
 ## RULE 40 COMPLIANCE
 
@@ -80,11 +81,11 @@ that could have been raised earlier. If the authority is genuinely new
 
 ## CONCLUSION
 
-[¶last] {Restate the recommendation with summary reasoning. E.g.: "The
-petition should be **denied**. The petitioner identifies no point of law or
-fact that the Court overlooked or misapprehended. The petition reargues the
-same positions presented in the original briefing, which the Court considered
-and rejected."}
+[¶last] {Restate the likely outcome with summary reasoning. E.g.: "Under
+the Court's established practice, the petition would likely be **denied**.
+The petition does not appear to identify a point of law or fact the Court
+overlooked or misapprehended, and instead reargues the same positions
+presented in the original briefing."}
 ```
 
 ## Formatting Rules
@@ -100,22 +101,27 @@ and rejected."}
 - Issue headings use: `### Point N: {characterization}`
 - NEW AUTHORITIES uses: `## NEW AUTHORITIES`
 
-### Recommendation
-- Always state a recommendation — this is not optional
-- Use **bold** for the recommendation word in [¶1] and CONCLUSION
-- Four possible recommendations:
-  - **Deny** — Court did not overlook or misapprehend; petitioner merely disagrees
+### Recommendation Tone
+- Always state a likely outcome — this is not optional
+- Frame as a prediction, not a personal recommendation: "The petition would likely be denied" rather than "The petition should be denied" or "I recommend denial"
+- Use hedged, predictive language: "would likely," "appears to," "under the Court's practice," "the applicable standards suggest"
+- Never use first person ("I recommend," "I believe," "in my view")
+- Never be emphatic or certain — even when the outcome seems clear, acknowledge that the Court exercises its own judgment
+- Use **bold** for the outcome word in [¶1] and CONCLUSION
+- Four possible outcomes:
+  - **Deny** — Court did not appear to overlook or misapprehend; petitioner appears to disagree with the result
   - **Request response** — Close question on whether something was overlooked/misapprehended AND no response has been received yet
-  - **Correction** — Petition identifies an error that should be fixed but does not change the result
+  - **Correction** — Petition appears to identify an error that could be corrected without changing the result
   - **Oral argument** — Response has been received but the answer remains uncertain
 
 ### Content Requirements
 
 #### RECOMMENDATION
 - 1 paragraph
-- Bold the recommendation word
-- 2-3 sentences of reasoning
+- Bold the outcome word
+- 2-3 sentences of reasoning framed as a prediction based on precedent and rules
 - Reference the Rule 40 standard
+- Use predictive language ("would likely," "appears," "under the Court's practice")
 
 #### RULE 40 COMPLIANCE
 - Check timeliness (14 days from opinion date)
@@ -134,8 +140,8 @@ Each point must include:
 
 #### CONCLUSION
 - 1-2 paragraphs
-- Restate recommendation with bold
-- Summary reasoning
+- Restate likely outcome with bold
+- Summary reasoning in predictive tone
 
 ### What to Avoid
 - **Never** use placeholder brackets: [Date], [page], [County], etc.

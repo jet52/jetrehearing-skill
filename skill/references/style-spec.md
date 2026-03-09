@@ -61,11 +61,12 @@ All citations — case law, record, statutory — should be as precise as possib
 
 - **Neutral, analytical tone** throughout
 - Present both sides fairly before offering assessment
-- When `recommend_mode` is enabled, recommendations should be clearly stated but appropriately hedged
-- When `recommend_mode` is disabled (default), present both sides' strongest positions without stating a preferred outcome
+- Recommendations should be framed as predictions of what the Court would likely do based on precedent and rules — never as personal recommendations
+- Use hedged, predictive language: "would likely," "appears to," "under the Court's practice," "the applicable standards suggest"
+- Never be emphatic or certain, even when the outcome seems clear — acknowledge that the Court exercises its own judgment
 - Use **"the Court"** when referring to the ND Supreme Court
 - Use **"the district court"** for the lower court
-- Do not use "I" or "we" — write in the third person or use passive voice for recommendations (e.g., "The Court should affirm...")
+- Do not use "I" or "we" — write in the third person using predictive framing (e.g., "The petition would likely be denied" rather than "The petition should be denied")
 - Avoid legalese: no "herein," "wherefore," "aforementioned," "said" as a pronoun
 - Active voice unless passive genuinely improves readability
 - Use the Oxford comma
