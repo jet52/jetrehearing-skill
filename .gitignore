@@ -1,0 +1,10 @@
+*.zip
+*.pyc
+__pycache__/
+.venv/
+node_modules/
+.split_records/
+*.txt
+*.json
+!package.json
+test/
