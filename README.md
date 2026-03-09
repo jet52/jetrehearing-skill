@@ -17,7 +17,7 @@ Analyze petitions for rehearing and produce recommendation memos for the North D
 
 **Option A: From .zip**
 
-1. Download and extract `jetrehear-skill.zip`
+1. Download and extract `jetrehearing-skill.zip`
 2. Run the installer:
    ```bash
    python3 install.py
@@ -33,11 +33,11 @@ python3 install.py
 
 **Option C: Manual**
 
-Copy the `skill/` directory contents to `~/.claude/skills/jetrehear/`:
+Copy the `skill/` directory contents to `~/.claude/skills/jetrehearing/`:
 
 ```bash
-mkdir -p ~/.claude/skills/jetrehear
-cp -r skill/* ~/.claude/skills/jetrehear/
+mkdir -p ~/.claude/skills/jetrehearing
+cp -r skill/* ~/.claude/skills/jetrehearing/
 ```
 
 ## Usage

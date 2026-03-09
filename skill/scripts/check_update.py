@@ -13,7 +13,7 @@ import urllib.request
 from pathlib import Path
 
 REPO = "jet52/jetrehearing-skill"
-SKILL_NAME = "jetrehear"
+SKILL_NAME = "jetrehearing"
 LOCAL_VERSION = None  # Set below
 
 GITHUB_API = f"https://api.github.com/repos/{REPO}/releases/latest"

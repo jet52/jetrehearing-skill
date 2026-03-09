@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Cross-platform installer for the jetrehear skill."""
+"""Cross-platform installer for the jetrehearing skill."""
 
 import shutil
 import subprocess
 import sys
 from pathlib import Path
 
-SKILL_NAME = "jetrehear"
+SKILL_NAME = "jetrehearing"
 SCRIPT_DIR = Path(__file__).resolve().parent
 INSTALL_DIR = Path.home() / ".claude" / "skills" / SKILL_NAME
 

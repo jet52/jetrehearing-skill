@@ -1,4 +1,4 @@
-# jetrehear-skill: Petition for Rehearing Analyzer
+# jetrehearing-skill: Petition for Rehearing Analyzer
 
 ## Context
 
@@ -9,7 +9,7 @@ After the ND Supreme Court decides a case, a party may file a petition for rehea
 ## Project Structure
 
 ```
-jetrehear-skill/
+jetrehearing-skill/
 ├── README.md
 ├── VERSION                             # "1.0.0"
 ├── Makefile

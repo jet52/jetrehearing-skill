@@ -1,6 +1,6 @@
 ---
-name: jetrehear
-description: 'Analyze petitions for rehearing and produce recommendation memos for the North Dakota Supreme Court. Use when the user provides a petition for rehearing and the Court''s opinion and asks to analyze the petition, draft a rehearing memo, or review a petition for rehearing. Triggers: analyze rehearing petition, rehearing memo, jetrehear, review petition for rehearing, petition for rehearing analysis.'
+name: jetrehearing
+description: 'Analyze petitions for rehearing and produce recommendation memos for the North Dakota Supreme Court. Use when the user provides a petition for rehearing and the Court''s opinion and asks to analyze the petition, draft a rehearing memo, or review a petition for rehearing. Triggers: analyze rehearing petition, rehearing memo, jetrehearing, review petition for rehearing, petition for rehearing analysis.'
 ---
 
 # Petition for Rehearing Analyzer
@@ -11,16 +11,16 @@ Analyze petitions for rehearing under N.D.R.App.P. 40 and produce recommendation
 
 | Resource               | Path                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| This skill             | `~/.claude/skills/jetrehear/`                                |
+| This skill             | `~/.claude/skills/jetrehearing/`                                |
 | ND opinions (markdown) | `~/refs/opin/markdown/`                                      |
 | ND Century Code        | `~/refs/ndcc/`                                               |
 | ND Admin Code          | `~/refs/ndac/`                                               |
 | ND Court Rules         | `~/refs/rule/`                                               |
-| Style reference        | `~/.claude/skills/jetrehear/references/style-spec.md`        |
-| Memo format reference  | `~/.claude/skills/jetrehear/references/rehearing-format.md`  |
-| Citation checker       | `~/.claude/skills/jetrehear/scripts/verify_citations.py`     |
-| splitmarks             | `~/.claude/skills/jetrehear/scripts/splitmarks.py`           |
-| extract_docx           | `~/.claude/skills/jetrehear/scripts/extract_docx.py`         |
+| Style reference        | `~/.claude/skills/jetrehearing/references/style-spec.md`        |
+| Memo format reference  | `~/.claude/skills/jetrehearing/references/rehearing-format.md`  |
+| Citation checker       | `~/.claude/skills/jetrehearing/scripts/verify_citations.py`     |
+| splitmarks             | `~/.claude/skills/jetrehearing/scripts/splitmarks.py`           |
+| extract_docx           | `~/.claude/skills/jetrehearing/scripts/extract_docx.py`         |
 
 > **Dependencies:**
 > - splitmarks.py requires `pypdf` (`pip install pypdf`)
@@ -103,7 +103,7 @@ Close call (could be oversight, uncertain):
 
 ### Step 0: Scan & Classify
 
-**Update check:** Run `python3 ~/.claude/skills/jetrehear/scripts/check_update.py` silently. If it prints output indicating an update, include it as a note to the user.
+**Update check:** Run `python3 ~/.claude/skills/jetrehearing/scripts/check_update.py` silently. If it prints output indicating an update, include it as a note to the user.
 
 1. **Scan** the working directory for `.pdf`, `.docx`, and `.md` files.
 
@@ -120,15 +120,15 @@ Close call (could be oversight, uncertain):
    | `other` | Anything else |
 
 3. **Handle opinion format:**
-   - `.docx` → extract with `python3 ~/.claude/skills/jetrehear/scripts/extract_docx.py opinion.docx > opinion.txt`
+   - `.docx` → extract with `python3 ~/.claude/skills/jetrehearing/scripts/extract_docx.py opinion.docx > opinion.txt`
    - `.pdf` → extract with `pdftotext opinion.pdf opinion.txt`
    - `.md` → read directly
 
 4. **Split large record PDFs** via `splitmarks.py` (same pattern as jetmemo):
 
    ```bash
-   python3 ~/.claude/skills/jetrehear/scripts/splitmarks.py record.pdf --dry-run -vv
-   python3 ~/.claude/skills/jetrehear/scripts/splitmarks.py record.pdf -o .split_records --no-clobber -v
+   python3 ~/.claude/skills/jetrehearing/scripts/splitmarks.py record.pdf --dry-run -vv
+   python3 ~/.claude/skills/jetrehearing/scripts/splitmarks.py record.pdf -o .split_records --no-clobber -v
    ```
 
    After the first pass, check if any output file is still large (>30 pages) and has sub-bookmarks. If so, run `splitmarks` again on that file. Repeat until every output file is a single record item or has no further bookmarks.
@@ -140,8 +140,8 @@ Close call (could be oversight, uncertain):
 ### Step 1: Extract & Prepare
 
 1. **Read references** into main context:
-   - `~/.claude/skills/jetrehear/references/style-spec.md`
-   - `~/.claude/skills/jetrehear/references/rehearing-format.md`
+   - `~/.claude/skills/jetrehearing/references/style-spec.md`
+   - `~/.claude/skills/jetrehearing/references/rehearing-format.md`
 
 2. **Extract text** from all PDFs using `pdftotext`:
 
@@ -165,13 +165,13 @@ Close call (could be oversight, uncertain):
 4. **Extract citation lists:** Run the citation checker separately on petition, opinion, and briefs (if provided):
 
    ```bash
-   python3 ~/.claude/skills/jetrehear/scripts/verify_citations.py --file petition.txt --refs-dir ~/refs --json > petition_citations.json
-   python3 ~/.claude/skills/jetrehear/scripts/verify_citations.py --file opinion.txt --refs-dir ~/refs --json > opinion_citations.json
+   python3 ~/.claude/skills/jetrehearing/scripts/verify_citations.py --file petition.txt --refs-dir ~/refs --json > petition_citations.json
+   python3 ~/.claude/skills/jetrehearing/scripts/verify_citations.py --file opinion.txt --refs-dir ~/refs --json > opinion_citations.json
    ```
 
    If briefs are provided:
    ```bash
-   cat appellant_brief.txt appellee_brief.txt | python3 ~/.claude/skills/jetrehear/scripts/verify_citations.py --refs-dir ~/refs --json > briefs_citations.json
+   cat appellant_brief.txt appellee_brief.txt | python3 ~/.claude/skills/jetrehearing/scripts/verify_citations.py --refs-dir ~/refs --json > briefs_citations.json
    ```
 
 5. **Compute new authorities:** Compare petition citations against opinion and briefs citations. Any citation in the petition that does NOT appear (by normalized field) in the opinion or briefs is a "new authority." This determines whether Agent D launches.
@@ -471,7 +471,7 @@ Close call (could be oversight, uncertain):
 
 Write the complete recommendation memo in markdown per `rehearing-format.md`:
 
-1. **Header** — case number, case name, opinion date, petition date, response status, "Central Legal Staff"
+1. **Header** — case number, case name, opinion date, petition date, response status
 2. **RECOMMENDATION** [¶1] — bold recommendation + 2-3 sentence reasoning
 3. **RULE 40 COMPLIANCE** [¶2] — timeliness, page limit, form, particularity
 4. **PETITION SUMMARY** [¶3] — overview of claims
@@ -516,7 +516,7 @@ Write the memo to a file in the current working directory:
 If the user requests verification, run the citation checker on the finished memo:
 
 ```bash
-python3 ~/.claude/skills/jetrehear/scripts/verify_citations.py --file {memo_file} --refs-dir ~/refs
+python3 ~/.claude/skills/jetrehearing/scripts/verify_citations.py --file {memo_file} --refs-dir ~/refs
 ```
 
 For JSON output, add `--json`.

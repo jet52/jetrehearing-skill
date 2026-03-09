@@ -1,4 +1,4 @@
-SKILL_NAME := jetrehear
+SKILL_NAME := jetrehearing
 ZIP_NAME := $(SKILL_NAME)-skill.zip
 
 .PHONY: package clean install test release
