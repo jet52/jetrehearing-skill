@@ -484,6 +484,7 @@ Write the complete recommendation memo in markdown per `rehearing-format.md`:
    - Response (if provided)
 6. **NEW AUTHORITIES** — table if any new citations detected
 7. **CONCLUSION** — restate likely outcome with summary reasoning
+8. **Footer** — read version from `~/.claude/skills/jetrehearing/VERSION` and render the footer line per `rehearing-format.md`
 
 ### Step 6: Self-Review Checklist
 
