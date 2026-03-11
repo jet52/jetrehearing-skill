@@ -471,7 +471,7 @@ Close call (could be oversight, uncertain):
 
 Write the complete recommendation memo in markdown per `rehearing-format.md`:
 
-1. **Header** — case number, case name, opinion date, petition date, response status
+1. **Header** — case number, case name, opinion date, petition date, response status, draft attribution line (use the model name and version you are running, e.g. "Opus 4.6")
 2. **RECOMMENDATION** [¶1] — bold likely outcome + 2-3 sentence predictive reasoning
 3. **RULE 40 COMPLIANCE** [¶2] — timeliness, page limit, form, particularity
 4. **PETITION SUMMARY** [¶3] — overview of claims
