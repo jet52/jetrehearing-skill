@@ -76,22 +76,22 @@ jetrehearing-skill/
 
 The skill uses local reference datasets for citation verification and precedent lookup. Without these, the memo will still generate but citation verification and precedent analysis will be limited.
 
-Download the reference archives from [ndconst.org/tools](https://ndconst.org/tools) and install to `~/refs/`:
+Download the reference archives from [ndconst.org/tools](https://ndconst.org/tools) and install to `~/refs/nd/`:
 
 ```bash
-mkdir -p ~/refs
-unzip opin.zip -d ~/refs/opin
-unzip ndcc.zip -d ~/refs/ndcc
-unzip ndac.zip -d ~/refs/ndac
-unzip rule.zip -d ~/refs/rule
+mkdir -p ~/refs/nd
+unzip opin.zip -d ~/refs/nd/opin
+unzip ndcc.zip -d ~/refs/nd/code
+unzip ndac.zip -d ~/refs/nd/regs
+unzip rule.zip -d ~/refs/nd/rule
 ```
 
-| Archive                                               | Contents                                 | Install to     | Purpose                                    |
-| ----------------------------------------------------- | ---------------------------------------- | -------------- | ------------------------------------------ |
-| [opin.zip](https://ndconst.org/_media/tools/opin.zip) | ND Supreme Court opinions (1997-present) | `~/refs/opin/` | Precedent lookup and citation verification |
-| [ndcc.zip](https://ndconst.org/_media/tools/ndcc.zip) | North Dakota Century Code                | `~/refs/ndcc/` | Statutory text verification                |
-| [ndac.zip](https://ndconst.org/_media/tools/ndac.zip) | North Dakota Administrative Code         | `~/refs/ndac/` | Administrative rule verification           |
-| [rule.zip](https://ndconst.org/_media/tools/rule.zip) | North Dakota Court Rules                 | `~/refs/rule/` | Court rule verification                    |
+| Archive                                               | Contents                                 | Install to        | Purpose                                    |
+| ----------------------------------------------------- | ---------------------------------------- | ----------------- | ------------------------------------------ |
+| [opin.zip](https://ndconst.org/_media/tools/opin.zip) | ND Supreme Court opinions (1997-present) | `~/refs/nd/opin/` | Precedent lookup and citation verification |
+| [ndcc.zip](https://ndconst.org/_media/tools/ndcc.zip) | North Dakota Century Code                | `~/refs/nd/code/` | Statutory text verification                |
+| [ndac.zip](https://ndconst.org/_media/tools/ndac.zip) | North Dakota Administrative Code         | `~/refs/nd/regs/` | Administrative rule verification           |
+| [rule.zip](https://ndconst.org/_media/tools/rule.zip) | North Dakota Court Rules                 | `~/refs/nd/rule/` | Court rule verification                    |
 
 ## Other Dependencies
 

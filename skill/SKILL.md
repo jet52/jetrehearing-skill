@@ -12,10 +12,10 @@ Analyze petitions for rehearing under N.D.R.App.P. 40 and produce recommendation
 | Resource               | Path                                                         |
 | ---------------------- | ------------------------------------------------------------ |
 | This skill             | `~/.claude/skills/jetrehearing/`                                |
-| ND opinions (markdown) | `~/refs/opin/markdown/`                                      |
-| ND Century Code        | `~/refs/ndcc/`                                               |
-| ND Admin Code          | `~/refs/ndac/`                                               |
-| ND Court Rules         | `~/refs/rule/`                                               |
+| ND opinions (markdown) | `~/refs/nd/opin/markdown/`                                   |
+| ND Century Code        | `~/refs/nd/code/`                                            |
+| ND Admin Code          | `~/refs/nd/regs/`                                            |
+| ND Court Rules         | `~/refs/nd/rule/`                                            |
 | Style reference        | `~/.claude/skills/jetrehearing/references/style-spec.md`        |
 | Memo format reference  | `~/.claude/skills/jetrehearing/references/rehearing-format.md`  |
 | Citation checker       | `~/.claude/skills/jetrehearing/scripts/verify_citations.py`     |
@@ -31,21 +31,21 @@ Analyze petitions for rehearing under N.D.R.App.P. 40 and produce recommendation
 
 All local reference material lives under `~/refs/`. This directory may or may not exist for a given user; always check before relying on it and fall back to web lookups when absent.
 
-**ND opinions** — `~/refs/opin/markdown/<year>/<year>ND<number>.md` (e.g., `2022/2022ND210.md`). Paragraphs are marked `[¶N]`.
+**ND opinions** — `~/refs/nd/opin/markdown/<year>/<year>ND<number>.md` (e.g., `2022/2022ND210.md`). Paragraphs are marked `[¶N]`.
 
-**ND Century Code (N.D.C.C.)** — `~/refs/ndcc/title-<T>/chapter-<T>-<CC>.md` where `<T>` is the title number and `<CC>` is the chapter number (with leading zero). Examples:
-- N.D.C.C. § 14-07.1-01 → `~/refs/ndcc/title-14/chapter-14-07.1.md`
-- N.D.C.C. § 12.1-02-02 → `~/refs/ndcc/title-12.1/chapter-12.1-02.md`
+**ND Century Code (N.D.C.C.)** — `~/refs/nd/code/title-<T>/chapter-<T>-<CC>.md` where `<T>` is the title number and `<CC>` is the chapter number (with leading zero). Examples:
+- N.D.C.C. § 14-07.1-01 → `~/refs/nd/code/title-14/chapter-14-07.1.md`
+- N.D.C.C. § 12.1-02-02 → `~/refs/nd/code/title-12.1/chapter-12.1-02.md`
 
 Each chapter file contains all sections in that chapter as `### § T-CC-SS` headings. To verify a specific section, read the chapter file and search for the section number.
 
-**ND Administrative Code (N.D.A.C.)** — `~/refs/ndac/title-<T>/article-<T>-<AA>/chapter-<T>-<AA>-<CC>.md` where `<T>` is the title, `<AA>` is the article, and `<CC>` is the chapter. Some small articles are a single file: `~/refs/ndac/title-<T>/article-<T>-<AA>.md`. Examples:
-- N.D.A.C. § 75-02-01.2-01 → `~/refs/ndac/title-75/article-75-02/chapter-75-02-01.2.md`
-- N.D.A.C. § 75-07-01 → `~/refs/ndac/title-75/article-75-07.md` (single-file article)
+**ND Administrative Code (N.D.A.C.)** — `~/refs/nd/regs/title-<T>/article-<T>-<AA>/chapter-<T>-<AA>-<CC>.md` where `<T>` is the title, `<AA>` is the article, and `<CC>` is the chapter. Some small articles are a single file: `~/refs/nd/regs/title-<T>/article-<T>-<AA>.md`. Examples:
+- N.D.A.C. § 75-02-01.2-01 → `~/refs/nd/regs/title-75/article-75-02/chapter-75-02-01.2.md`
+- N.D.A.C. § 75-07-01 → `~/refs/nd/regs/title-75/article-75-07.md` (single-file article)
 
 Each chapter file contains all sections as `### § T-AA-CC-SS` headings.
 
-**ND Court Rules** — `~/refs/rule/<category>/rule-<number>.md`. Categories map from citation abbreviations:
+**ND Court Rules** — `~/refs/nd/rule/<category>/rule-<number>.md`. Categories map from citation abbreviations:
 
 | Citation prefix | Directory |
 | --------------- | --------- |
@@ -59,9 +59,9 @@ Each chapter file contains all sections as `### § T-AA-CC-SS` headings.
 | N.D.R.Prof.Conduct | `ndrprofconduct/` |
 | N.D.Code.Jud.Conduct | `ndcodejudconduct/` |
 
-Example: N.D.R.Civ.P. 12(b) → `~/refs/rule/ndrcivp/rule-12.md`. N.D.R.App.P. 35.1 → `~/refs/rule/ndrappp/rule-35.1.md`. The parenthetical (e.g., `(b)`) refers to a subsection within the rule file — read the whole file and search for the subsection.
+Example: N.D.R.Civ.P. 12(b) → `~/refs/nd/rule/ndrcivp/rule-12.md`. N.D.R.App.P. 35.1 → `~/refs/nd/rule/ndrappp/rule-35.1.md`. The parenthetical (e.g., `(b)`) refers to a subsection within the rule file — read the whole file and search for the subsection.
 
-**READ-ONLY access to `~/refs/` is pre-authorized.** All agents (including subagents) may read files from this directory without additional permission. Never modify, delete, or write to any file in this directory.
+**Read access to `~/refs/` is pre-authorized.** All agents (including subagents) may read files from this directory without additional permission. Do not modify or delete existing files. Adding new files is permitted only by jetcite's caching functions and scraper scripts.
 
 ---
 
