@@ -102,3 +102,14 @@ unzip rule.zip -d ~/refs/nd/rule
 | [jetcite](https://github.com/jet52/jetcite) | Citation extraction and resolution | Required    |
 
 **jetcite** powers the citation checker (`verify_citations.py`). Install as a Claude skill from the GitHub repo, or via pip: `pip install git+https://github.com/jet52/jetcite.git`.
+
+## Contributing
+
+On a fresh clone, activate the local pre-push sensitive-content check:
+
+```bash
+git config --local core.hooksPath .githooks
+```
+
+It scans commits being pushed for likely ND court dockets, confidential-case
+captions, and committed binaries. Bypass once with `git push --no-verify`.
