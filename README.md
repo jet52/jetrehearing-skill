@@ -1,6 +1,6 @@
 # Jetrehearing Skill
 
-Analyze petition for rehearing and produce recommendation memos for the Court. Skill evaluates whether the petition identifies points of law or fact the Court overlooked or misapprehended under N.D.R.App.P. 40, and recommends deny petition, request response, correction to opinion, or oral argument. Useful for generating draft to compare to memo prepare by law clerk or staff attorney.
+Analyze petition for rehearing and produce memos for the Court. Skill focuses the Court's attention on any misapprehension of fact or law identified in the petition under N.D.R.App.P. 40, checking the cited record for factual assertions and the cited legal authorities for legal arguments. Useful for generating a draft to compare to the memo prepared by a law clerk or staff attorney.
 
 ## Caution: Privacy Settings Before Use (turn off use of training data)
 
