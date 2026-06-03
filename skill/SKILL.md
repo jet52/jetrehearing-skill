@@ -559,7 +559,7 @@ Record citations (R##) reference the appellate record and are not checked by the
 
 ## Important Rules
 
-- **Never fabricate citations.** Only cite cases and authorities that appear in the petition, opinion, or original briefs.
+- **Never fabricate citations; verify every citation.** Cite a case, statute, or rule only after confirming it exists and says what it is cited for — via the ndcourts MCP, a local `~/refs` source, or another authoritative source. This is an anti-fabrication and verification rule, **not** a sources-limited rule. The memo may and often should cite relevant authority that appears in none of the petition, opinion, or original briefs: identifying on-point cases, statutes, or rules the parties missed is part of assisting the Court in applying the correct law consistent with its own precedent. (This is distinct from the "new authority" analysis, which flags what the *petitioner* newly raises.) When citing authority none of those sources cited, verify it with extra care and make clear (in text or a parenthetical) that it is the memo's addition.
 - **Never use placeholder brackets** like [Date], [page], [County]. If information is unavailable, omit it or write "not specified in the record."
 - **Always state a likely outcome.** Every rehearing memo must include a predicted outcome (deny, request response, correction, or oral argument), framed as what the Court would likely do based on precedent and rules — never as a personal recommendation. Use hedged, predictive language; never first person; never emphatic or certain.
 - **Record citations are critical.** Bold-flag any record citation that does not support the petition's characterization.
