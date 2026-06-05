@@ -2,6 +2,24 @@
 
 Analyze petition for rehearing and produce memos for the Court. Skill focuses the Court's attention on any misapprehension of fact or law identified in the petition under N.D.R.App.P. 40, checking the cited record for factual assertions and the cited legal authorities for legal arguments. Useful for generating a draft to compare to the memo prepared by a law clerk or staff attorney.
 
+## Not an Official Court Product
+
+Jetrehearing is an independent, open-source project published by an individual
+in a personal capacity as legal-educational software, consistent with Rule 3.1
+of the North Dakota Code of Judicial Conduct. It is not authorized, endorsed, or
+maintained by the North Dakota Supreme Court or the state court system, and is
+being developed without court staff, equipment, or resources. It operates only
+on publicly filed documents — do not input sealed, confidential, or other
+non-public material. Its output, including any recommendation on a petition for
+rehearing, is machine-generated and is neither the view of the Court or any
+justice nor the Court's disposition of the petition. It is not legal advice.
+
+**Best practice:** Run this tool as a *cross-check, not a substitute* — after a
+staff attorney or law clerk has independently assessed the petition. Then compare
+the two for any differences in content or recommendation and evaluate why they
+diverge. The tool's value is in surfacing points an independent assessment may
+have missed, not in replacing it.
+
 ## Caution: Privacy Settings Before Use (turn off use of training data)
 
 ## Prerequisites
