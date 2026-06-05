@@ -7,4 +7,5 @@ node_modules/
 *.txt
 *.json
 !package.json
+!.claude-plugin/plugin.json
 test/

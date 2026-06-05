@@ -1,0 +1,8 @@
+{
+  "name": "jetrehearing",
+  "version": "1.2.0",
+  "description": "Analyze a petition for rehearing under N.D.R.App.P. 40 and draft a memo; best run as a cross-check after an independent staff or law-clerk assessment.",
+  "author": { "name": "JET" },
+  "homepage": "https://github.com/jet52/jetrehearing-skill",
+  "skills": "./skill"
+}
