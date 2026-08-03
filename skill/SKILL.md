@@ -1,6 +1,6 @@
 ---
 name: jetrehearing
-version: 1.0.0
+version: 1.3.0
 description: 'Analyze petitions for rehearing and produce recommendation memos for the North Dakota Supreme Court. Use when the user provides a petition for rehearing and the Court''s opinion and asks to analyze the petition, draft a rehearing memo, or review a petition for rehearing. Triggers: analyze rehearing petition, rehearing memo, jetrehearing, review petition for rehearing, petition for rehearing analysis.'
 ---
 
@@ -18,6 +18,7 @@ Analyze petitions for rehearing under N.D.R.App.P. 40 and produce recommendation
 | ND Admin Code          | `~/refs/nd/regs/`                                            |
 | ND Court Rules         | `~/refs/nd/rule/`                                            |
 | Style reference        | `~/.claude/skills/jetrehearing/references/style-spec.md`        |
+| ND citation style      | `~/.claude/skills/jetrehearing/references/nd-citation-style.md` |
 | Memo format reference  | `~/.claude/skills/jetrehearing/references/rehearing-format.md`  |
 | Citation checker       | `~/.claude/skills/jetrehearing/scripts/verify_citations.py`     |
 | splitmarks             | `~/.claude/skills/jetrehearing/scripts/splitmarks.py`           |
@@ -143,6 +144,7 @@ Close call (could be oversight, uncertain):
 1. **Read references** into main context:
    - `~/.claude/skills/jetrehearing/references/style-spec.md`
    - `~/.claude/skills/jetrehearing/references/rehearing-format.md`
+   - `~/.claude/skills/jetrehearing/references/nd-citation-style.md` — the ND Supreme Court's Redbook supplement; governs every ND case, statute, and session-law citation
 
 2. **Extract text** from all PDFs using `pdftotext`:
 

@@ -2,7 +2,15 @@
 
 ## Citation Formats
 
-### ND Supreme Court Cases
+### ND cases — see `nd-citation-style.md`
+
+**The Court's Redbook supplement (`nd-citation-style.md`, this directory) governs
+every North Dakota citation** — era-specific forms, `ND` vs `ND App`, the
+parallel-cite rule (reporter first page only, no pin cite), short forms,
+`Id. at ¶ N`, the special same-paragraph short form, and the N.D.C.C. /
+N.D.R.C. / session-law forms. Read it before drafting a ND cite; do not restate
+its rules here. It is vendored from the jetcite repo — edit it there.
+
 ```
 2024 ND 156
 2024 ND 156, ¶ 12
