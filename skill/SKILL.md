@@ -10,19 +10,21 @@ Analyze petitions for rehearing under N.D.R.App.P. 40 and produce recommendation
 
 ## Fixed Paths
 
+`${CLAUDE_SKILL_DIR}` below is replaced by the harness with this skill's absolute directory (standalone install, plugin cache, or Cowork mount alike) before you read this file — the paths you see are literal. Keep them double-quoted in shell commands; on Windows the path may contain spaces.
+
 | Resource               | Path                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| This skill             | `~/.claude/skills/jetrehearing/`                                |
+| This skill             | `${CLAUDE_SKILL_DIR}/`                                |
 | ND opinions (markdown) | `~/refs/nd/opin/markdown/`                                   |
 | ND Century Code        | `~/refs/nd/code/`                                            |
 | ND Admin Code          | `~/refs/nd/regs/`                                            |
 | ND Court Rules         | `~/refs/nd/rule/`                                            |
-| Style reference        | `~/.claude/skills/jetrehearing/references/style-spec.md`        |
-| ND citation style      | `~/.claude/skills/jetrehearing/references/nd-citation-style.md` |
-| Memo format reference  | `~/.claude/skills/jetrehearing/references/rehearing-format.md`  |
-| Citation checker       | `~/.claude/skills/jetrehearing/scripts/verify_citations.py`     |
-| splitmarks             | `~/.claude/skills/jetrehearing/scripts/splitmarks.py`           |
-| extract_docx           | `~/.claude/skills/jetrehearing/scripts/extract_docx.py`         |
+| Style reference        | `${CLAUDE_SKILL_DIR}/references/style-spec.md`        |
+| ND citation style      | `${CLAUDE_SKILL_DIR}/references/nd-citation-style.md` |
+| Memo format reference  | `${CLAUDE_SKILL_DIR}/references/rehearing-format.md`  |
+| Citation checker       | `${CLAUDE_SKILL_DIR}/scripts/verify_citations.py`     |
+| splitmarks             | `${CLAUDE_SKILL_DIR}/scripts/splitmarks.py`           |
+| extract_docx           | `${CLAUDE_SKILL_DIR}/scripts/extract_docx.py`         |
 
 > **Dependencies:**
 > - splitmarks.py requires `pypdf` (`pip install pypdf`)
@@ -105,7 +107,7 @@ Close call (could be oversight, uncertain):
 
 ### Step 0: Scan & Classify
 
-**Update check:** Run `python3 ~/.claude/skills/jetrehearing/scripts/check_update.py` silently. If it prints output indicating an update, include it as a note to the user.
+**Update check:** Run `python3 "${CLAUDE_SKILL_DIR}/scripts/check_update.py"` silently. If it prints output indicating an update, include it as a note to the user.
 
 1. **Scan** the working directory for `.pdf`, `.docx`, and `.md` files.
 
@@ -122,15 +124,15 @@ Close call (could be oversight, uncertain):
    | `other` | Anything else |
 
 3. **Handle opinion format:**
-   - `.docx` → extract with `python3 ~/.claude/skills/jetrehearing/scripts/extract_docx.py opinion.docx > opinion.txt`
+   - `.docx` → extract with `python3 "${CLAUDE_SKILL_DIR}/scripts/extract_docx.py" opinion.docx > opinion.txt`
    - `.pdf` → extract with `pdftotext opinion.pdf opinion.txt`
    - `.md` → read directly
 
 4. **Split large record PDFs** via `splitmarks.py` (same pattern as jetmemo):
 
    ```bash
-   python3 ~/.claude/skills/jetrehearing/scripts/splitmarks.py record.pdf --dry-run -vv
-   python3 ~/.claude/skills/jetrehearing/scripts/splitmarks.py record.pdf -o .split_records --no-clobber -v
+   python3 "${CLAUDE_SKILL_DIR}/scripts/splitmarks.py" record.pdf --dry-run -vv
+   python3 "${CLAUDE_SKILL_DIR}/scripts/splitmarks.py" record.pdf -o .split_records --no-clobber -v
    ```
 
    After the first pass, check if any output file is still large (>30 pages) and has sub-bookmarks. If so, run `splitmarks` again on that file. Repeat until every output file is a single record item or has no further bookmarks.
@@ -142,9 +144,9 @@ Close call (could be oversight, uncertain):
 ### Step 1: Extract & Prepare
 
 1. **Read references** into main context:
-   - `~/.claude/skills/jetrehearing/references/style-spec.md`
-   - `~/.claude/skills/jetrehearing/references/rehearing-format.md`
-   - `~/.claude/skills/jetrehearing/references/nd-citation-style.md` — the ND Supreme Court's Redbook supplement; governs every ND case, statute, and session-law citation
+   - `${CLAUDE_SKILL_DIR}/references/style-spec.md`
+   - `${CLAUDE_SKILL_DIR}/references/rehearing-format.md`
+   - `${CLAUDE_SKILL_DIR}/references/nd-citation-style.md` — the ND Supreme Court's Redbook supplement; governs every ND case, statute, and session-law citation
 
 2. **Extract text** from all PDFs using `pdftotext`:
 
@@ -168,13 +170,13 @@ Close call (could be oversight, uncertain):
 4. **Extract citation lists:** Run the citation checker separately on petition, opinion, and briefs (if provided):
 
    ```bash
-   python3 ~/.claude/skills/jetrehearing/scripts/verify_citations.py --file petition.txt --refs-dir ~/refs --json > petition_citations.json
-   python3 ~/.claude/skills/jetrehearing/scripts/verify_citations.py --file opinion.txt --refs-dir ~/refs --json > opinion_citations.json
+   python3 "${CLAUDE_SKILL_DIR}/scripts/verify_citations.py" --file petition.txt --refs-dir ~/refs --json > petition_citations.json
+   python3 "${CLAUDE_SKILL_DIR}/scripts/verify_citations.py" --file opinion.txt --refs-dir ~/refs --json > opinion_citations.json
    ```
 
    If briefs are provided:
    ```bash
-   cat appellant_brief.txt appellee_brief.txt | python3 ~/.claude/skills/jetrehearing/scripts/verify_citations.py --refs-dir ~/refs --json > briefs_citations.json
+   cat appellant_brief.txt appellee_brief.txt | python3 "${CLAUDE_SKILL_DIR}/scripts/verify_citations.py" --refs-dir ~/refs --json > briefs_citations.json
    ```
 
 5. **Compute new authorities:** Compare petition citations against opinion and briefs citations. Any citation in the petition that does NOT appear (by normalized field) in the opinion or briefs is a "new authority." This determines whether Agent D launches.
@@ -487,7 +489,7 @@ Write the complete recommendation memo in markdown per `rehearing-format.md`:
    - Response (if provided)
 6. **NEW AUTHORITIES** — table if any new citations detected
 7. **CONCLUSION** — restate likely outcome with summary reasoning
-8. **Footer** — read version from `~/.claude/skills/jetrehearing/VERSION` and render the footer line per `rehearing-format.md`
+8. **Footer** — read version from `${CLAUDE_SKILL_DIR}/VERSION` (if that file is absent, use the `version:` from this document's frontmatter) and render the footer line per `rehearing-format.md`
 
 ### Step 6: Self-Review Checklist
 
@@ -520,7 +522,7 @@ Write the memo to a file in the current working directory:
 If the user requests verification, run the citation checker on the finished memo:
 
 ```bash
-python3 ~/.claude/skills/jetrehearing/scripts/verify_citations.py --file {memo_file} --refs-dir ~/refs
+python3 "${CLAUDE_SKILL_DIR}/scripts/verify_citations.py" --file {memo_file} --refs-dir ~/refs
 ```
 
 For JSON output, add `--json`.
@@ -543,7 +545,7 @@ Record citations (R##) reference the appellate record and are not checked by the
 Stamp a provenance footer onto the finished memo so the report carries a reproducibility record — which Claude model and which jetrehearing version generated it, and on what date — for later validation and comparison as the model and the skill change. Run this **last**, after any Step 8 verification append:
 
 ```bash
-python3 ~/.claude/skills/jetrehearing/scripts/provenance.py --file {memo_file} \
+python3 "${CLAUDE_SKILL_DIR}/scripts/provenance.py" --file {memo_file} \
   --model "{runtime model — friendly name and exact ID, e.g. Claude Opus 4.8 (claude-opus-4-8)}"
 ```
 
