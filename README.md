@@ -86,7 +86,8 @@ jetrehearing-skill/
     └── scripts/
         ├── check_update.py
         ├── extract_docx.py
-        ├── splitmarks.py
+        ├── splitmarks.py     ← PDF bookmark splitter (v2.2.0, vendored)
+        ├── textquality.py    ← text-layer scorer behind `--check-text`
         └── verify_citations.py
 ```
 

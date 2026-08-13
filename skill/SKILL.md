@@ -1,6 +1,6 @@
 ---
 name: jetrehearing
-version: 1.3.0
+version: 1.3.1
 description: 'Analyze petitions for rehearing and produce recommendation memos for the North Dakota Supreme Court. Use when the user provides a petition for rehearing and the Court''s opinion and asks to analyze the petition, draft a rehearing memo, or review a petition for rehearing. Triggers: analyze rehearing petition, rehearing memo, jetrehearing, review petition for rehearing, petition for rehearing analysis.'
 ---
 

@@ -2,10 +2,12 @@ SKILL_NAME := jetrehearing
 ZIP_NAME := $(SKILL_NAME)-skill.zip
 SPLITMARKS_SRC := ../splitmarks/splitmarks.py
 SPLITMARKS_DEST := skill/scripts/splitmarks.py
+TEXTQUALITY_SRC := ../splitmarks/textquality.py
+TEXTQUALITY_DEST := skill/scripts/textquality.py
 CITESTYLE_SRC := ../jetcite/reference/nd-citation-style.md
 CITESTYLE_DEST := skill/references/nd-citation-style.md
 
-.PHONY: package clean install test release vendor-splitmarks vendor-citestyle drift-check
+.PHONY: package clean install test release vendor-splitmarks vendor-textquality vendor-citestyle drift-check version-check
 
 package: clean
 	mkdir -p $(SKILL_NAME)-skill
@@ -28,10 +30,23 @@ clean:
 install:
 	python3 install.py
 
-vendor-splitmarks:
+# Depends on vendor-textquality because splitmarks imports textquality inside a
+# try/except: vendoring the script without the module leaves --check-text
+# silently back on the old density-only behaviour, which is the exact failure
+# this pairing exists to prevent. The two always move together.
+vendor-splitmarks: vendor-textquality
 	@test -f $(SPLITMARKS_SRC) || (echo "FAIL: splitmarks source not found at $(SPLITMARKS_SRC)" && exit 1)
 	cp $(SPLITMARKS_SRC) $(SPLITMARKS_DEST)
 	@echo "Vendored splitmarks from $(SPLITMARKS_SRC)"
+
+# Text-layer quality scorer that splitmarks --check-text consults to tell a
+# corrupt text layer (dense but garbage) from a missing one. Canonical copy
+# lives in the splitmarks repo beside the script that imports it; it must land
+# in the same directory as splitmarks.py for that import to resolve.
+vendor-textquality:
+	@test -f $(TEXTQUALITY_SRC) || (echo "FAIL: textquality source not found at $(TEXTQUALITY_SRC)" && exit 1)
+	cp $(TEXTQUALITY_SRC) $(TEXTQUALITY_DEST)
+	@echo "Vendored textquality from $(TEXTQUALITY_SRC)"
 
 # The ND Supreme Court's Redbook supplement. Canonical copy lives in the jetcite
 # repo so jetmemo, jetredline, and jetrehearing cite one identical rule set.
@@ -49,6 +64,12 @@ drift-check:
 	else \
 	  echo "splitmarks: canonical repo not present ($(SPLITMARKS_SRC)); skipping drift check."; \
 	fi
+	@if [ -f $(TEXTQUALITY_SRC) ]; then \
+	  cmp -s $(TEXTQUALITY_SRC) $(TEXTQUALITY_DEST) || { echo "DRIFT: $(TEXTQUALITY_DEST) differs from canonical $(TEXTQUALITY_SRC) — run 'make vendor-textquality'"; exit 1; }; \
+	  echo "textquality: in sync with canonical."; \
+	else \
+	  echo "textquality: canonical repo not present ($(TEXTQUALITY_SRC)); skipping drift check."; \
+	fi
 	@if [ -f $(CITESTYLE_SRC) ]; then \
 	  cmp -s $(CITESTYLE_SRC) $(CITESTYLE_DEST) || { echo "DRIFT: $(CITESTYLE_DEST) differs from canonical $(CITESTYLE_SRC) — run 'make vendor-citestyle'"; exit 1; }; \
 	  echo "nd-citation-style: in sync with canonical."; \
@@ -56,12 +77,26 @@ drift-check:
 	  echo "nd-citation-style: canonical repo not present ($(CITESTYLE_SRC)); skipping drift check."; \
 	fi
 
-test: drift-check
+# The version lives in three places that must agree: VERSION (canonical, drives
+# the release tag), the plugin manifest, and the SKILL.md frontmatter the model
+# reads. jetmemo shipped three releases with only one or two of the three bumped
+# before it grew this guard; the same failure is available here.
+version-check:
+	@V=$$(cat VERSION) && \
+	PV=$$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' .claude-plugin/plugin.json | head -1) && \
+	SV=$$(sed -n 's/^version:[[:space:]]*//p' skill/SKILL.md | head -1) && \
+	if [ "$$V" != "$$PV" ] || [ "$$V" != "$$SV" ]; then \
+	  echo "VERSION DRIFT: VERSION=$$V plugin.json=$$PV SKILL.md=$$SV"; exit 1; \
+	fi; \
+	echo "version: $$V consistent across VERSION, plugin.json, SKILL.md."
+
+test: drift-check version-check
 	@echo "Validating skill structure..."
 	@test -f skill/SKILL.md || (echo "FAIL: skill/SKILL.md missing" && exit 1)
 	@test -d skill/references || (echo "FAIL: skill/references/ missing" && exit 1)
 	@test -d skill/scripts || (echo "FAIL: skill/scripts/ missing" && exit 1)
 	@test -f skill/scripts/splitmarks.py || (echo "FAIL: skill/scripts/splitmarks.py missing" && exit 1)
+	@test -f skill/scripts/textquality.py || (echo "FAIL: skill/scripts/textquality.py missing — run 'make vendor-textquality'" && exit 1)
 	@test -f skill/scripts/extract_docx.py || (echo "FAIL: skill/scripts/extract_docx.py missing" && exit 1)
 	@test -f skill/scripts/verify_citations.py || (echo "FAIL: skill/scripts/verify_citations.py missing" && exit 1)
 	@test -f skill/references/rehearing-format.md || (echo "FAIL: skill/references/rehearing-format.md missing" && exit 1)
