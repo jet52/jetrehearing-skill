@@ -63,7 +63,7 @@ All citations — case law, record, statutory — should be as precise as possib
 - **Record citations:** Always include pinpoint page when available: `(R45:12)` not just `(R45)`. Include paragraph when citing a specific finding: `(R45:12:¶15)`.
 - **Case citations:** Always include pinpoint paragraph: `2024 ND 156, ¶ 12` not just `2024 ND 156`.
 - **Short identifying quotes:** When a fact or holding could be ambiguous, include a short quote (≤ 15 words) to anchor the citation: `The district court found "no credible evidence of changed circumstances." (R36:4)`.
-- **Brief page citations:** When attributing an argument to a party, cite the brief page: `Appellant argues the statute is ambiguous. (Appellant's Br. at 14.)` Use the format `(Appellant's Br. at ##)` or `(Appellee's Br. at ##)`.
+- **Brief citations:** When attributing an argument to a party, cite the brief — page and paragraph: `Appellant argues the statute is ambiguous (At. Br. 1, ¶ 2).` The form is defined in `nd-citation-style.md` under "Citations to briefs."
 
 ## Tone and Voice
 
